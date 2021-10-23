@@ -10,6 +10,16 @@ questionsRouter.get("/", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+// get by categorie and level
+questionsRouter.get("/:categorie/:difficulty", (req, res) => {
+  Questions.find({
+    categorie: req.params.categorie,
+    difficulty: req.params.difficulty,
+  })
+    .then((Questions) => res.json(Questions))
+    .catch((err) => res.json(err));
+});
+
 // create question
 questionsRouter.post("/", (req, res) => {
   Questions.create(req.body)
