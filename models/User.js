@@ -31,11 +31,8 @@ const User = new Schema({
   wrongAnswer: { type: Number, default: 0 },
   admin: { type: Boolean, default: false },
   progress: { type: Number, default: 0 },
+  question: [{ type: mongoose.Schema.Types.ObjectId, ref: "Questions" }],
   date: { type: Date, default: Date.now() },
-  questionId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Questions",
-  },
 });
 
 module.exports = mongoose.model("User", User);

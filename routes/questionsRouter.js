@@ -6,6 +6,7 @@ const Questions = require("../models/Questions");
 // get all questions
 questionsRouter.get("/", (req, res) => {
   Questions.find()
+
     .then((Questions) => res.json(Questions))
     .catch((err) => res.json(err));
 });
