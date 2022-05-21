@@ -2,16 +2,6 @@ const userRouter = require("express").Router();
 const auth = require("../middleware/auth");
 const User = require("../models/User");
 
-// userRouter.get("/", (req, res) => {
-//   User.find().then((user) => res.json(user));
-//   // res.send(req.user);
-// });
-// userRouter.get("/", auth, (req, res) => {
-//   console.log(req);
-//   User.findOne({
-//     _id: req.user.user._id,
-//   }).then((user) => res.json(user));
-// });
 userRouter.get("/", (req, res) => {
   res.send(req.user);
 });
@@ -24,8 +14,13 @@ userRouter.get("/all", auth, (req, res) => {
 // update score and question id
 userRouter.put("/score", auth, (req, res) => {
   const findUser = { _id: req.body._id };
-  const updateScoreQid = { score: req.body.score, question: req.body.question };
-  User.findOneAndUpdate(findUser, updateScoreQid)
+  const update_Score_Qid_RightAnswer_Progress = {
+    score: req.body.score,
+    question: req.body.question,
+    progress: req.body.progress,
+    correctAnswer: req.body.correctAnswer,
+  };
+  User.findOneAndUpdate(findUser, update_Score_Qid_RightAnswer_Progress)
     .then((user) => res.json(user))
     .catch((err) => res.json(err));
 });
