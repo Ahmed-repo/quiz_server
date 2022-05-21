@@ -31,6 +31,7 @@ userRouter.get("/details", auth, (req, res) => {
     .populate("question")
     .then((user) => res.json(user));
 });
+
 // create user
 userRouter.post("/add", (req, res) => {
   User.create(req.body).then((user) => res.json(user));
